@@ -7,7 +7,7 @@ import java.util.Scanner;
  * @author Brooklyn Tech CS Department
  * @version September 2018
  */
-public class ChatBot1
+public class WLeungFoodBot
 {
 	//emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
 	int emotion = 0;
@@ -44,7 +44,7 @@ public class ChatBot1
 	 */	
 	public String getGreeting()
 	{
-		return "Hi, what is up?";
+		return "Hello, my name is FoodBot. How may I help you?";
 	}
 	
 	/**
@@ -60,21 +60,21 @@ public class ChatBot1
 		
 		if (statement.length() == 0)
 		{
-			response = "Say something, please.";
+			response = "Sorry, I didn't catch that. Please repeat what you said..";
 		}
 
-		else if (findKeyword(statement, "no") >= 0)
+		else if (findKeyword(statement, "Restaurants") >= 0)
 		{
-			response = "Why so negative?";
+			response = "I see. Which type of restaurants would you like? Seafood, Vegetarian, Steakhouse, Fast food, Italian, French, American, Asian, Spanish, etc.?";
                 	emotion--;
 		}
 		
-		else if (findKeyword(statement, "levin") >= 0)
+		else if (findKeyword(statement, "Bars") >= 0)
 		{
-			response = "More like LevinTheDream, amiright?";
+			response = "Okay. What kind of bar would you like?";
 			emotion++;
 		}
-		else if (findKeyword(statement, "folwell") >= 0)
+		else if (findKeyword(statement, "Food Stalls") >= 0)
 		{
 			response = "Watch your backpacks, Mr. Folwell doesn't fall well.";
 			emotion++;
