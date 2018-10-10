@@ -40,7 +40,7 @@ public class ChatBot4
 	 */	
 	public String getGreeting()
 	{
-		return "Hi, what is up?";
+		return "Hello, I am your guide to transportation in NYC.";
 	}
 	
 	/**

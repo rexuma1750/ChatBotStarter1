@@ -20,6 +20,10 @@ public class ChatBot3
 	 */
 	public void chatLoop(String statement)
 	{
+		if(statement != "3")
+		{
+			return;
+		}
 		Scanner in = new Scanner (System.in);
 		System.out.println (getGreeting());
 
