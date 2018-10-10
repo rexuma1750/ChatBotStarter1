@@ -15,11 +15,13 @@ public class ChatBotRunner
 	{
 		ChatBot1 chatbot1 = new ChatBot1();
 		ChatBot2 chatbot2 = new ChatBot2();
+		sfarukbotTourist chatbot3 = new sfarukbotTourist();
+		
 		ChatBot3 chatbot3 = new ChatBot3();
 		ChatBot4 chatbot4 = new ChatBot4();
 
 		Scanner in = new Scanner (System.in);
-		System.out.println("Welcome to the chatbot NYC Edition. Type 1,2,3 or 4 to speak to the other bots");
+		System.out.println("Welcome to the chatbot, nice to meet you.");
 		String statement = in.nextLine();
 
 		if(statement.equals("4"))
