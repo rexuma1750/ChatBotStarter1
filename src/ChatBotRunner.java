@@ -15,7 +15,7 @@ public class ChatBotRunner
 	{
 		ChatBot1 chatbot1 = new ChatBot1();
 		ChatBot2 chatbot2 = new ChatBot2();
-		ChatBot3 chatbot3 = new ChatBot3();
+		sfarukbot chatbot3 = new sfarukbot();
 		
 
 		Scanner in = new Scanner (System.in);
