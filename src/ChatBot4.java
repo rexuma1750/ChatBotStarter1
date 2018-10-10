@@ -21,7 +21,10 @@ public class ChatBot4
 		Scanner in = new Scanner (System.in);
 		System.out.println (getGreeting());
 
-
+		if(statement != "2")
+		{
+			return;
+		}
 		while (!statement.equals("Bye"))
 		{
 
