@@ -21,7 +21,10 @@ public class ChatBot4
 		Scanner in = new Scanner (System.in);
 		System.out.println (getGreeting());
 
-
+		if(statement != "2")
+		{
+			return;
+		}
 		while (!statement.equals("Bye"))
 		{
 
@@ -40,7 +43,7 @@ public class ChatBot4
 	 */	
 	public String getGreeting()
 	{
-		return "Hi, what is up?";
+		return "Hello, I am your guide to transportation in NYC.";
 	}
 	
 	/**
