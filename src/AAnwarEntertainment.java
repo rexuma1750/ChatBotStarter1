@@ -19,6 +19,10 @@ public class AAnwarEntertainment
 	 */
 	public void chatLoop(String statement)
 	{
+		if(statement != "2")
+		{
+			return;
+		}
 		Scanner in = new Scanner (System.in);
 		System.out.println (getGreeting());
 
