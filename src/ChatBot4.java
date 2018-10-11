@@ -18,26 +18,111 @@ public class ChatBot4
 	 */
 	public void chatLoop(String statement)
 	{
+		String temp = "";
+		String reply = "";
 		Scanner in = new Scanner (System.in);
-		System.out.println (getGreeting());
-		System.out.println("I can do a few basic functions, I can attempt to give you directions or I can describe the basic transportation systems in NYC.");
-
-		while (!statement.equals("Bye"))
-		{
 
 
-			statement = in.nextLine();
-			//getResponse handles the user reply
-			System.out.println(getResponse(statement));
+		while (!statement.equals("Bye")) {
+			if (emotion < 0) {
+				System.out.println("I haven't got all day, what do you want?");
+				statement = in.nextLine();
+				System.out.println("You want " + statement + "? (Type y/n to confirm)");
+				reply = in.nextLine();
+				if (reply.equals("y"))
+				{
+					System.out.println("Finally");
+					emotion = 0;
 
+					if(statement.equalsIgnoreCase("directions"))
+					{
+						while(!statement.equalsIgnoreCase("exit")) {
+							System.out.println("Where do you want to go? (Enter in format of 'I want to go to') (Type 'exit' to return to the main menu)");
+							temp = in.nextLine();
+							statement = temp;
+							if (temp.indexOf("I want to go to") == -1) {
+								if(temp.equalsIgnoreCase("exit"))
+								{
+									chatLoop(statement);
+								}
+								System.out.println("could you repeat that?");
+								emotion--;
 
+							}
+							if(temp.indexOf("I want to go to") >-1) {
+								transformIWantToStatement(temp);
+							}
+							chatLoop(statement);
+						}
+					}
+					if(statement.equalsIgnoreCase("history"))
+					{
+
+					}
+					if(statement.equalsIgnoreCase("quiz"))
+					{
+
+					}
+
+				}
+				if (reply.equals("n")) {
+					System.out.println("Stop wasting my time");
+					emotion--;
+
+				}
+
+			}
+			if (emotion >= 0) {
+				statement = in.nextLine();
+				//getResponse handles the user reply
+				System.out.println(getResponse(statement));
+				System.out.println("So you want " + statement + "? (Type y/n to confirm)");
+				reply = in.nextLine();
+				if (reply.equals("y"))
+				{
+					if(statement.equalsIgnoreCase("directions"))
+					{
+						while(!statement.equalsIgnoreCase("exit")) {
+							System.out.println("Where do you want to go? (Enter in format of 'I want to go to') (Type 'exit' to return to the main menu)");
+							temp = in.nextLine();
+							statement = temp;
+							if (temp.indexOf("I want to go to") == -1) {
+								if(temp.equalsIgnoreCase("exit"))
+								{
+									chatLoop(statement);
+								}
+								System.out.println("could you repeat that?");
+								emotion--;
+
+							}
+							if(temp.indexOf("I want to go to") >-1) {
+								transformIWantToStatement(temp);
+							}
+							chatLoop(statement);
+						}
+					}
+					if(statement.equalsIgnoreCase("history"))
+					{
+
+					}
+					if(statement.equalsIgnoreCase("quiz"))
+					{
+
+					}
+				}
+				if (reply.equals("n")) {
+
+					emotion--;
+					chatLoop(statement);
+				}
+			}
 		}
-
 	}
 	/**
 	 * Get a default greeting 	
 	 * @return a greeting
-	 */	
+	 */
+
 	public String getGreeting()
 	{
 		return "Hello, I am your guide to transportation in NYC.";
@@ -59,7 +144,7 @@ public class ChatBot4
 			response = "Say something, please.";
 		}
 
-		else if (findKeyword(statement, "no") >= 0)
+	/**	else if (findKeyword(statement, "no") >= 0)
 		{
 			response = "Why so negative?";
                 	emotion--;
@@ -80,7 +165,7 @@ public class ChatBot4
 			response = "Go for the gold, man.";
 			emotion++;
 		}
-
+**/
 		// Response transforming I want to statement
 		else if (findKeyword(statement, "I want to", 0) >= 0)
 		{
@@ -90,11 +175,11 @@ public class ChatBot4
 		{
 			response = transformIWantStatement(statement);
 		}	
-		else
+	/**	else
 		{
 			response = getRandomResponse();
 		}
-		
+		**/
 		return response;
 	}
 	
@@ -115,9 +200,9 @@ public class ChatBot4
 			statement = statement.substring(0, statement
 					.length() - 1);
 		}
-		int psn = findKeyword (statement, "I want to", 0);
-		String restOfStatement = statement.substring(psn + 9).trim();
-		return "Why do you want to " + restOfStatement + "?";
+		int psn = findKeyword (statement, "I want to go to", 0);
+		String restOfStatement = statement.substring(psn + 15).trim();
+		return "Why do you want to go to" + restOfStatement + "?";
 	}
 
 	
