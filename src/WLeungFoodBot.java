@@ -18,10 +18,7 @@ public class WLeungFoodBot
 	 */
 	public void chatLoop(String statement)
 	{
-		if(statement != "1")
-		{
-			return;
-		}
+
 		Scanner in = new Scanner (System.in);
 		System.out.println (getGreeting());
 

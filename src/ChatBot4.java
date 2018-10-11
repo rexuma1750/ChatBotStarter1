@@ -20,11 +20,8 @@ public class ChatBot4
 	{
 		Scanner in = new Scanner (System.in);
 		System.out.println (getGreeting());
+		System.out.println("I can do a few basic functions, I can attempt to give you directions or I can describe the basic transportation systems in NYC.");
 
-		if(statement != "2")
-		{
-			return;
-		}
 		while (!statement.equals("Bye"))
 		{
 
