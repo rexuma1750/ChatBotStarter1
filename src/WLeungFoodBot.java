@@ -22,16 +22,23 @@ public class WLeungFoodBot
 		Scanner in = new Scanner (System.in);
 		System.out.println (getGreeting());
 
-
-		while (!statement.equals("Bye"))
+		while (!statement.toLowerCase().equals("bye"))
 		{
-
-
 			statement = in.nextLine();
 			//getResponse handles the user reply
-			System.out.println(getResponse(statement));
-
-
+			if(statement.equals("food"))
+			{
+				System.out.println("At what price point do you want? Enter your minimum price point.");
+				int minPricePoint = in.nextInt();
+				System.out.println("Enter you maximum price point.");
+				int maxPricePoint = in.nextInt();
+				System.out.println("What kind of food? Do you want food from a restaurant, a bar or a food stall?");
+				statement = in.nextLine();
+			}
+			else
+			{
+				System.out.println(getResponse(statement));
+			}
 		}
 
 	}
@@ -41,7 +48,7 @@ public class WLeungFoodBot
 	 */	
 	public String getGreeting()
 	{
-		return "Hello, my name is FoodBot. How may I help you?";
+		return "Hello, my name is FoodBot. How are you?";
 	}
 	
 	/**
@@ -59,29 +66,81 @@ public class WLeungFoodBot
 		{
 			response = "Sorry, I didn't catch that. Please repeat what you said..";
 		}
-
-		else if (findKeyword(statement, "Restaurants") >= 0)
+		else if (findKeyword(statement, "Restaurant") >= 0)
 		{
-			response = "I see. Which type of restaurants would you like? Seafood, Vegetarian, Steakhouse, Fast food, Italian, French, American, Asian, Spanish, etc.?";
-                	emotion--;
+			response = "I see. Which type of restaurants would you like? Seafood, Vegetarian, Steakhouse, Fast food, Italian, French, American, Asian, Mexican, etc.?";
+			emotion++;
 		}
-		
-		else if (findKeyword(statement, "Bars") >= 0)
+		else if (findKeyword(statement, "Bar") >= 0)
 		{
 			response = "Okay. What kind of bar would you like?";
 			emotion++;
 		}
-		else if (findKeyword(statement, "Food Stalls") >= 0)
+		else if (findKeyword(statement, "Food stall") >= 0)
 		{
-			response = "Watch your backpacks, Mr. Folwell doesn't fall well.";
+			response = "Food stalls, huh? Let's see here. Would you like a hotdog food stall, bagel food stall, etc?";
+			emotion--;
+		}
+		else if (findKeyword(statement, "Never mind") >= 0)
+		{
+			response = "Bye, have a great day!";
+			emotion--;
+		}
+		else if (findKeyword(statement, "seafood", 0) >= 0)
+		{
+			response = "Seafood restaurants near you.";
 			emotion++;
 		}
-		else if (findKeyword(statement, "goldman") >= 0)
+		else if (findKeyword(statement, "vegetarian", 0) >= 0)
 		{
-			response = "Go for the gold, man.";
+			response = "Vegetarian restaurants near you";
 			emotion++;
 		}
-
+		else if (findKeyword(statement, "steakhouse", 0) >= 0)
+		{
+			response = "Steakhouses near you";
+			emotion++;
+		}
+		else if (findKeyword(statement, "fast food", 0) >= 0)
+		{
+			response = "Fast food restaurants near you";
+			emotion++;
+		}
+		else if (findKeyword(statement, "italian", 0) >= 0)
+		{
+			response = "Italian restaurants near you";
+			emotion++;
+		}
+		else if (findKeyword(statement, "french", 0) >= 0)
+		{
+			response = "French restaurants near you";
+			emotion++;
+		}
+		else if (findKeyword(statement, "american", 0) >= 0)
+		{
+			response = "American restaurants near you";
+			emotion++;
+		}
+		else if (findKeyword(statement, "asian", 0) >= 0)
+		{
+			response = "Asian restaurants near you";
+			emotion++;
+		}
+		else if (findKeyword(statement, "mexican", 0) >= 0)
+		{
+			response = "Mexican restaurants near you";
+			emotion++;
+		}
+		else if (findKeyword(statement, "etc", 0) >= 0)
+		{
+			response = "Sorry, we currently don't have that in our database. Please select one of the ones from above";
+			emotion--;
+		}
+		else if (findKeyword(statement, "bye", 0) >= 0)
+		{
+			response = "Are you sure you want to go? Type Bye again to leave.";
+			emotion--;
+		}
 		// Response transforming I want to statement
 		else if (findKeyword(statement, "I want to", 0) >= 0)
 		{
@@ -90,12 +149,19 @@ public class WLeungFoodBot
 		else if (findKeyword(statement, "I want",0) >= 0)
 		{
 			response = transformIWantStatement(statement);
-		}	
+		}
+		else if (findKeyword(statement, "I'm", 0) >= 0)
+		{
+			response = transformIFeelToStatement(statement);
+		}
+		else if (findKeyword(statement,"I " + "you", 0) >= 0)
+		{
+			response = transformIYouStatement(statement);
+		}
 		else
 		{
 			response = getRandomResponse();
 		}
-		
 		return response;
 	}
 	
@@ -169,7 +235,23 @@ public class WLeungFoodBot
 		String restOfStatement = statement.substring(psnOfI + 1, psnOfYou).trim();
 		return "Why do you " + restOfStatement + " me?";
 	}
-	
+
+	private String transformIFeelToStatement(String statement)
+	{
+		statement = statement.trim();
+		String lastChar = statement.substring(statement
+				.length() - 1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement
+					.length() - 1);
+		}
+
+		int IFeel = findKeyword (statement, "I feel", 0);
+
+		String restOfStatement = statement.substring(IFeel + 5).trim();
+		return "I'm feeling " + restOfStatement + " too! So, how may I help you?";
+	}
 
 	
 	
