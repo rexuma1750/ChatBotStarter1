@@ -29,7 +29,9 @@ public class ChatBotRunner {
 
 		if (statement.equalsIgnoreCase("transportation")) {
 			while (!statement.equals("Bye")) {
-				chatbot4.chatLoop(statement);
+				chatBot4.getGreeting();
+				System.out.println("Now, tell me what I can help you with. For example you can type 'directions' or 'history' or 'quiz'");
+				chatBot4.chatLoop(statement);
 				statement = in.nextLine();
 			}
 		}
